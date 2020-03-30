@@ -13,13 +13,27 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        let statement = true
         
         let yellowView = SwiftUIKitColorView(backgroundColor: .yellow)
         let redView = SwiftUIKitColorView(backgroundColor: .red)
+        let greenView = SwiftUIKitColorView(backgroundColor: .green)
+        let magentaView = SwiftUIKitColorView(backgroundColor: .magenta)
+        
         let containerView = HStack(frame: self.view.frame) {
-            yellowView
-            redView
+            magentaView
+            VStack(frame:self.view.frame) {
+                if statement {
+                    redView
+                    yellowView
+                }
+                else {
+                    greenView
+                }
+            }
+            greenView
         }
+
         if let view = containerView.uiView {
             self.view.addSubview(view)
         }
