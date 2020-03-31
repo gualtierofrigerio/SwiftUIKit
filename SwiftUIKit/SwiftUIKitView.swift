@@ -46,75 +46,30 @@ protocol SwiftUIKitView {
     var uiView:UIView? { get }
 }
 
+// MARK: - Modifier
+
+protocol SwiftUIKitModifier {
+    func modify(_ view:SwiftUIKitView) -> SwiftUIKitView
+}
+
 extension SwiftUIKitView {
     func modifier(_ modifier:SwiftUIKitModifier) -> SwiftUIKitView {
         modifier.modify(self)
     }
 }
 
-struct SwiftUIKitContainer: SwiftUIKitView {
-    var type: SwiftUIKitViewType {
-        internalViewType
-    }
-    var uiView:UIView? {
-        internalViewType.uiView()
-    }
-    
-    init(withViews views:[SwiftUIKitView]) {
-        var uiViews:[UIView] = []
-        for view in views {
-            switch view.type {
-            case .multiple(let multipleViews):
-                uiViews.append(contentsOf: multipleViews)
-            case .single(let singleView):
-                uiViews.append(singleView)
-            default:
-                ()
-            }
-        }
-        if uiViews.count == 0 {
-            internalViewType = .empty
-        }
-        else if uiViews.count == 1 {
-            internalViewType = .single(uiViews[0])
-        }
-        else {
-            internalViewType = .multiple(uiViews)
-        }
-    }
-    
-    private var internalViewType:SwiftUIKitViewType
-}
+// MARK: - Common modifiers
 
-struct SwiftUIKitViewEmpty: SwiftUIKitView {
-    var type: SwiftUIKitViewType {
-        .empty
+extension SwiftUIKitView {
+    func background(_ color:UIColor) -> SwiftUIKitView {
+        let colorModifier = SwiftUIKitColorModifier(color)
+        return colorModifier.modify(self)
     }
-    var uiView: UIView? {
-        nil
+    
+    func frame(_ frame:CGRect) -> SwiftUIKitView {
+        let frameModifier = SwiftUIKitFrameModifier(frame)
+        return frameModifier.modify(self)
     }
 }
 
-@_functionBuilder
-struct SwiftUIKitViewBuilder {
-    static func buildBlock(_ views:SwiftUIKitView...) -> SwiftUIKitView {
-        return SwiftUIKitContainer(withViews: views)
-    }
-    
-    static func buildEither(first: SwiftUIKitView) -> SwiftUIKitView {
-        return first
-    }
-
-    static func buildEither(second: SwiftUIKitView) -> SwiftUIKitView {
-        return second
-    }
-    
-    static func buildIf(_ view:SwiftUIKitView?) -> SwiftUIKitView {
-        view ?? SwiftUIKitViewEmpty()
-    }
-}
-
-protocol SwiftUIKitModifier {
-    func modify(_ view:SwiftUIKitView) -> SwiftUIKitView
-}
 
