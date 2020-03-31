@@ -46,6 +46,12 @@ protocol SwiftUIKitView {
     var uiView:UIView? { get }
 }
 
+extension SwiftUIKitView {
+    func modifier(_ modifier:SwiftUIKitModifier) -> SwiftUIKitView {
+        modifier.modify(self)
+    }
+}
+
 struct SwiftUIKitContainer: SwiftUIKitView {
     var type: SwiftUIKitViewType {
         internalViewType
@@ -107,3 +113,8 @@ struct SwiftUIKitViewBuilder {
         view ?? SwiftUIKitViewEmpty()
     }
 }
+
+protocol SwiftUIKitModifier {
+    func modify(_ view:SwiftUIKitView) -> SwiftUIKitView
+}
+
