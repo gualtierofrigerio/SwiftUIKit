@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct SwiftUIFrameModifier:SwiftUIKitModifier {
+struct SwiftUIKitFrameModifier:SwiftUIKitModifier {
     init(_ frame:CGRect) {
         self.frame = frame
     }
@@ -22,7 +22,7 @@ struct SwiftUIFrameModifier:SwiftUIKitModifier {
     private var frame:CGRect
 }
 
-struct SwiftUIColorModifier:SwiftUIKitModifier {
+struct SwiftUIKitColorModifier:SwiftUIKitModifier {
     
     init(_ color:UIColor) {
         self.backgroundColor = color
