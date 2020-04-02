@@ -11,6 +11,7 @@
 		2574BA7A24339080002CF243 /* SwiftUIKitFunctionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2574BA7924339080002CF243 /* SwiftUIKitFunctionBuilder.swift */; };
 		2574BA7C24339A26002CF243 /* SwiftUIKitTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2574BA7B24339A26002CF243 /* SwiftUIKitTextView.swift */; };
 		2574BA9E2433A0E3002CF243 /* SwiftUIKitShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2574BA9D2433A0E3002CF243 /* SwiftUIKitShape.swift */; };
+		2574BAA02435D5C4002CF243 /* SwiftUIForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2574BA9F2435D5C4002CF243 /* SwiftUIForEach.swift */; };
 		25D524D5242D0B27004BFD36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D524D4242D0B27004BFD36 /* AppDelegate.swift */; };
 		25D524D7242D0B27004BFD36 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D524D6242D0B27004BFD36 /* SceneDelegate.swift */; };
 		25D524D9242D0B27004BFD36 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D524D8242D0B27004BFD36 /* ViewController.swift */; };
@@ -19,7 +20,6 @@
 		25D524E1242D0B29004BFD36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25D524DF242D0B29004BFD36 /* LaunchScreen.storyboard */; };
 		25D524E9242D0B38004BFD36 /* SwiftUIKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D524E8242D0B38004BFD36 /* SwiftUIKitView.swift */; };
 		25D524EB242D11F7004BFD36 /* SwiftUIKitStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D524EA242D11F6004BFD36 /* SwiftUIKitStack.swift */; };
-		25D524ED242DF67A004BFD36 /* SwiftUIKitColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D524EC242DF67A004BFD36 /* SwiftUIKitColorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +27,7 @@
 		2574BA7924339080002CF243 /* SwiftUIKitFunctionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIKitFunctionBuilder.swift; sourceTree = "<group>"; };
 		2574BA7B24339A26002CF243 /* SwiftUIKitTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIKitTextView.swift; sourceTree = "<group>"; };
 		2574BA9D2433A0E3002CF243 /* SwiftUIKitShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIKitShape.swift; sourceTree = "<group>"; };
+		2574BA9F2435D5C4002CF243 /* SwiftUIForEach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIForEach.swift; sourceTree = "<group>"; };
 		25D524D1242D0B27004BFD36 /* SwiftUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25D524D4242D0B27004BFD36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25D524D6242D0B27004BFD36 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,7 +38,6 @@
 		25D524E2242D0B29004BFD36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25D524E8242D0B38004BFD36 /* SwiftUIKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIKitView.swift; sourceTree = "<group>"; };
 		25D524EA242D11F6004BFD36 /* SwiftUIKitStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIKitStack.swift; sourceTree = "<group>"; };
-		25D524EC242DF67A004BFD36 /* SwiftUIKitColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIKitColorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,12 +77,12 @@
 				25D524DD242D0B29004BFD36 /* Assets.xcassets */,
 				25D524DF242D0B29004BFD36 /* LaunchScreen.storyboard */,
 				25D524E2242D0B29004BFD36 /* Info.plist */,
-				25D524EC242DF67A004BFD36 /* SwiftUIKitColorView.swift */,
-				25D524EA242D11F6004BFD36 /* SwiftUIKitStack.swift */,
+				2574BA9F2435D5C4002CF243 /* SwiftUIForEach.swift */,
 				2574BA7924339080002CF243 /* SwiftUIKitFunctionBuilder.swift */,
 				2574BA77243371BB002CF243 /* SwiftUIKitModifier.swift */,
 				2574BA7B24339A26002CF243 /* SwiftUIKitTextView.swift */,
 				2574BA9D2433A0E3002CF243 /* SwiftUIKitShape.swift */,
+				25D524EA242D11F6004BFD36 /* SwiftUIKitStack.swift */,
 				25D524E8242D0B38004BFD36 /* SwiftUIKitView.swift */,
 			);
 			path = SwiftUIKit;
@@ -163,9 +163,9 @@
 				25D524E9242D0B38004BFD36 /* SwiftUIKitView.swift in Sources */,
 				2574BA9E2433A0E3002CF243 /* SwiftUIKitShape.swift in Sources */,
 				2574BA7A24339080002CF243 /* SwiftUIKitFunctionBuilder.swift in Sources */,
-				25D524ED242DF67A004BFD36 /* SwiftUIKitColorView.swift in Sources */,
 				25D524D9242D0B27004BFD36 /* ViewController.swift in Sources */,
 				25D524D5242D0B27004BFD36 /* AppDelegate.swift in Sources */,
+				2574BAA02435D5C4002CF243 /* SwiftUIForEach.swift in Sources */,
 				25D524D7242D0B27004BFD36 /* SceneDelegate.swift in Sources */,
 				2574BA7C24339A26002CF243 /* SwiftUIKitTextView.swift in Sources */,
 				25D524EB242D11F7004BFD36 /* SwiftUIKitStack.swift in Sources */,
