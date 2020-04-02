@@ -17,24 +17,26 @@ struct HStack:SwiftUIKitView {
         containerView
     }
     
-    init(frame:CGRect, @SwiftUIKitViewBuilder _ builder:()->SwiftUIKitView) {
+    init(@SwiftUIKitViewBuilder _ builder:()->SwiftUIKitView) {
         let uiKitView = builder()
-        containerView = UIView(frame: frame)
+        containerView = FrameUpdateView()
+        containerView.updateFrameHandler = updateFrameHandler
         if let uiViews = uiKitView.type.uiViews() {
-            addViews(uiViews, toView: containerView)
+            for uiView in uiViews {
+                containerView.addSubview(uiView)
+            }
         }
     }
     
-    private var containerView:UIView
+    private var containerView:FrameUpdateView
     
-    private func addViews(_ views: [UIView], toView containerView: UIView) {
+    private func updateFrameHandler(_ containerView:UIView) {
         let size = containerView.frame.size
-        let width = size.width / CGFloat(views.count)
+        let width = size.width / CGFloat(containerView.subviews.count)
         
         var frame = CGRect(x: 0, y: 0, width: width, height: size.height)
-        for view in views {
+        for view in containerView.subviews {
             view.frame = frame
-            containerView.addSubview(view)
             frame.origin.x += width
         }
     }
@@ -48,24 +50,26 @@ struct VStack: SwiftUIKitView {
         containerView
     }
     
-    init(frame:CGRect, @SwiftUIKitViewBuilder _ builder:()->SwiftUIKitView) {
+    init(@SwiftUIKitViewBuilder _ builder:()->SwiftUIKitView) {
         let uiKitView = builder()
-        containerView = UIView(frame: frame)
+        containerView = FrameUpdateView()
+        containerView.updateFrameHandler = updateFrameHandler
         if let uiViews = uiKitView.type.uiViews() {
-            addViews(uiViews, toView: containerView)
+            for uiView in uiViews {
+                containerView.addSubview(uiView)
+            }
         }
     }
     
-    private var containerView:UIView
+    private var containerView:FrameUpdateView
     
-    private func addViews(_ views: [UIView], toView containerView: UIView) {
+    private func updateFrameHandler(_ containerView: UIView) {
         let size = containerView.frame.size
-        let height = size.height / CGFloat(views.count)
+        let height = size.height / CGFloat(containerView.subviews.count)
         
         var frame = CGRect(x: 0, y: 0, width: size.width, height: height)
-        for view in views {
+        for view in containerView.subviews {
             view.frame = frame
-            containerView.addSubview(view)
             frame.origin.y += height
         }
     }
@@ -81,21 +85,35 @@ struct ZStack: SwiftUIKitView {
     
     init(frame:CGRect, @SwiftUIKitViewBuilder _ builder:()->SwiftUIKitView) {
         let uiKitView = builder()
-        containerView = UIView(frame: frame)
+        containerView = FrameUpdateView()
+        containerView.updateFrameHandler = updateFrameHandler
         if let uiViews = uiKitView.type.uiViews() {
-            addViews(uiViews, toView: containerView)
+            for uiView in uiViews {
+                containerView.addSubview(uiView)
+            }
         }
     }
     
-    private var containerView:UIView
+    private var containerView:FrameUpdateView
     
-    private func addViews(_ views: [UIView], toView containerView: UIView) {
+    private func updateFrameHandler(_ containerView: UIView) {
         var zPosition:CGFloat = 0.0
         
-        for view in views {
-            containerView.addSubview(view)
+        for view in containerView.subviews {
             view.layer.zPosition = zPosition
             zPosition += 1
         }
     }
 }
+
+fileprivate class FrameUpdateView:UIView {
+    override var frame:CGRect {
+        didSet {
+            guard let updateFrameHandler = self.updateFrameHandler else {return}
+            updateFrameHandler(self)
+        }
+    }
+    
+    var updateFrameHandler:((_ view:UIView)->Void)?
+}
+
