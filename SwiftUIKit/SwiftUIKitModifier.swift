@@ -35,3 +35,18 @@ struct SwiftUIKitColorModifier:SwiftUIKitModifier {
     
     private var backgroundColor:UIColor
 }
+
+struct SwiftUIKitFontModifier: SwiftUIKitModifier {
+    init(_ font:UIFont) {
+        self.font = font
+    }
+    
+    func modify(_ view: SwiftUIKitView) -> SwiftUIKitView {
+        if let textView = view as? Text {
+            textView.setFont(font)
+        }
+        return view
+    }
+    
+    private var font:UIFont
+}
