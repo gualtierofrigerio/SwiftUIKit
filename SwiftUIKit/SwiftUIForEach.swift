@@ -9,14 +9,16 @@
 import Foundation
 import UIKit
 
-struct ForEach: SwiftUIKitView {
+typealias ForEach = SwiftUIViewForEach
+
+struct SwiftUIViewForEach: SwiftUIKitView {
     var type: SwiftUIKitViewType {
         viewType
     }
     
     var uiView: UIView?
     
-    init(_ array:Array<Any>, @SwiftUIKitViewBuilder _ builder:(_ range:Any)->SwiftUIKitView) {
+    init(_ array:Array<Any>, @SwiftUIKitViewBuilder _ builder:(_ element:Any)->SwiftUIKitView) {
         var uiViews:[UIView] = []
         for element in array {
             let cycleView = builder(element)
