@@ -9,7 +9,9 @@
 import Foundation
 import UIKit
 
-struct Text: SwiftUIKitView {
+typealias Text = SwiftUIKitText
+
+struct SwiftUIKitText: SwiftUIKitView {
     var type: SwiftUIKitViewType {
         .single(label)
     }
@@ -24,12 +26,16 @@ struct Text: SwiftUIKitView {
         label.text = text
     }
     
+    func setFont(_ font:UIFont) {
+        label.font = font
+    }
+    
     private var label:UILabel
 }
 
-extension Text {
+extension SwiftUIKitText {
     func font(_ font:UIFont) -> SwiftUIKitView {
-        label.font = font
+        setFont(font)
         return self
     }
 }
