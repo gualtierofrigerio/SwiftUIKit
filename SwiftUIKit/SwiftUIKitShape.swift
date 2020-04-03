@@ -26,42 +26,6 @@ struct Rectangle:SwiftUIKitView {
 }
 
 struct Circle:SwiftUIKitView {
-    
-    private class CircleView:UIView {
-        init(fillColor:UIColor) {
-            super.init(frame: CGRect.zero)
-            self.fillColor = fillColor
-        }
-        
-        required init?(coder: NSCoder) {
-            fatalError("init(coder:) has not been implemented")
-        }
-        
-        override func draw(_ rect: CGRect) {
-            let circleRect = circleFrame(inRect: rect)
-            var path = UIBezierPath()
-            path = UIBezierPath(ovalIn: circleRect)
-            fillColor.setFill()
-            path.fill()
-        }
-        
-        private func circleFrame(inRect rect:CGRect) -> CGRect {
-            var origin = rect.origin
-            var size = rect.size
-            if (size.width < size.height) {
-                size.height = size.width
-            }
-            else {
-                size.width = size.height
-            }
-            origin.x = (rect.size.width - size.width) / 2
-            origin.y = (rect.size.height - size.height) / 2
-            return CGRect(origin: origin, size: size)
-        }
-        
-        private var fillColor:UIColor = UIColor.clear
-    }
-    
     var type: SwiftUIKitViewType {
         .single(circleView)
     }
@@ -75,4 +39,39 @@ struct Circle:SwiftUIKitView {
     }
     
     private var circleView:CircleView
+}
+
+private class CircleView:UIView {
+    init(fillColor:UIColor) {
+        super.init(frame: CGRect.zero)
+        self.fillColor = fillColor
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func draw(_ rect: CGRect) {
+        let circleRect = circleFrame(inRect: rect)
+        var path = UIBezierPath()
+        path = UIBezierPath(ovalIn: circleRect)
+        fillColor.setFill()
+        path.fill()
+    }
+    
+    private func circleFrame(inRect rect:CGRect) -> CGRect {
+        var origin = rect.origin
+        var size = rect.size
+        if (size.width < size.height) {
+            size.height = size.width
+        }
+        else {
+            size.width = size.height
+        }
+        origin.x = (rect.size.width - size.width) / 2
+        origin.y = (rect.size.height - size.height) / 2
+        return CGRect(origin: origin, size: size)
+    }
+    
+    private var fillColor:UIColor = UIColor.clear
 }
