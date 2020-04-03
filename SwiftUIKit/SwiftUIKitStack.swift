@@ -9,7 +9,11 @@
 import Foundation
 import UIKit
 
-struct HStack:SwiftUIKitView {
+typealias HStack = SwiftUIKitViewHStack
+typealias VStack = SwiftUIKitViewVStack
+typealias ZStack = SwiftUIKitViewZStack
+
+struct SwiftUIKitViewHStack:SwiftUIKitView {
     var type: SwiftUIKitViewType {
         .single(containerView)
     }
@@ -42,7 +46,7 @@ struct HStack:SwiftUIKitView {
     }
 }
 
-struct VStack: SwiftUIKitView {
+struct SwiftUIKitViewVStack: SwiftUIKitView {
     var type: SwiftUIKitViewType {
         .single(containerView)
     }
@@ -75,7 +79,7 @@ struct VStack: SwiftUIKitView {
     }
 }
 
-struct ZStack: SwiftUIKitView {
+struct SwiftUIKitViewZStack: SwiftUIKitView {
     var type: SwiftUIKitViewType {
         .single(containerView)
     }
