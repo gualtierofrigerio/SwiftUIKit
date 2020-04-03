@@ -13,26 +13,43 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        let statement = true
+        let redLine = true
         
-        let yellowView = SwiftUIKitColorView(backgroundColor: .yellow)
-        let redView = SwiftUIKitColorView(backgroundColor: .red)
-        let greenView = SwiftUIKitColorView(backgroundColor: .green)
-        let magentaView = SwiftUIKitColorView(backgroundColor: .magenta)
+        let names = ["John", "Paul", "Luke"]
         
-        let containerView = HStack(frame: self.view.frame) {
-            magentaView
-            VStack(frame:self.view.frame) {
-                if statement {
-                    redView
-                    yellowView
+        let containerView = HStack {
+            ForEach(names) { name in
+                VStack {
+                    Text("hello \(name)")
+                        .modifier(SwiftUIKitFontModifier(UIFont.systemFont(ofSize: 30)))
+                        .background(.yellow)
+                    if redLine {
+                        Text("second line is red")
+                            .font(UIFont.systemFont(ofSize: 8))
+                            .background(.red)
+                    }
+                    else {
+                        Text("second line is green").background(.green)
+                    }
                 }
-                else {
-                    greenView
+                if redLine {
+                    Text("red red liiiine").background(.red)
                 }
             }
-            greenView
-        }
+        }.frame(self.view.frame)
+        
+        
+         let containerView2 = HStack {
+            Text("hi there!")
+                .font(UIFont.systemFont(ofSize: 30))
+                .frame(CGRect(x:0, y:0, width:100, height:100))
+                .background(.cyan)
+            Rectangle()
+                .background(.red)
+            Circle(fillColor: .yellow)
+                .frame(CGRect(x: 0, y: 0, width: 100, height: 100))
+        }.frame(self.view.frame)
+        
 
         if let view = containerView.uiView {
             self.view.addSubview(view)
